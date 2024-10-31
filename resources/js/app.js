@@ -60,13 +60,14 @@ async function authenticate() {
 
 
     } catch (error) {
-        console.error(error);
+        console.log(error);
+        
         if (error != 'TypeError: Failed to fetch') {
             alert(error)
         }
     }
 }
-// authenticate();
+authenticate();
 
 
 
@@ -118,7 +119,6 @@ export function cleanMessageValidation() {
         $('.error-validate').text('')
     }
 }
-
 
 
 // Toast Controller
@@ -247,8 +247,6 @@ $('body').on('input', '#password, #conPassword', function () {
         $('#passwordErrorLength').addClass('d-none');
     }
 });
-
-
 
 
 // Abrir modal Mi Perfil

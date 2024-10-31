@@ -24,3 +24,7 @@ Route::get('/marcas', function () {
 Route::get('/productos', function () {
     return view('products');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});

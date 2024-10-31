@@ -27,7 +27,9 @@ class ProductRequest extends FormRequest
             'name' => 'required|string|max:255',
             'unit_measure' => 'required|in:Unidad,Display,Caja',
             'stock' => 'required|integer',
-            'shipment_date' => 'nullable|date',
+            'shipment_date' => 'required|date',
+            'observation' => 'required',
+            'brand_id' => 'required|integer',
         ];
     }
 

@@ -27,6 +27,7 @@
                 <table class="table" id="table">
                     <thead>
                         <tr>
+                            <th class="text-primary">Id</th>
                             <th class="text-primary">Nombre</th>
                             <th class="text-primary">Unidad de Medida</th>
                             <th class="text-primary">Fecha Desembarque</th>
@@ -160,6 +161,39 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal para imegenes --}}
+    <div class="modal fade" id="modalImages" tabindex="-1" role="dialog" aria-labelledby="modalImagesLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalImagesLabel">Cargar Imágenes</h4>
+                </div>
+                <form id="formImages" class="modal-body">
+                    <!-- Botón para cargar archivos -->
+                    <div class="form-group btnd-none">
+                        <label class="btn btn-primary btn-file">
+                            <input type="file" class="hidden" name="images[]" id="fileInput" multiple
+                                accept="image/*">
+                            Seleccionar Imágenes
+                        </label>
+                    </div>
+
+                    <!-- Contenedores para mostrar imágenes -->
+                    <div class="row" id="imageContainers">
+                        <!-- Las imágenes cargadas se mostrarán aquí -->
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button id="btnExit" type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary btnd-none" id="loadImages">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script>
         // Traduccion de SELECT2
