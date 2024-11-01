@@ -208,6 +208,7 @@ $('body').on('click', '#btnReset', function () {
 
 // Evento de input file para cargar y mostrar la imagen
 $('body').on('input', '#fileInput', function (event) {
+
     const files = Array.from(event.target.files);
     console.log('FILESS: ', files);
 
@@ -235,7 +236,7 @@ $('body').on('input', '#fileInput', function (event) {
                 });
 
                 if (images.length <= maxImages) {
-                    imageContainers.innerHTML = ''; 
+                    imageContainers.innerHTML = '';
                     const columns = [
                         [],
                         [],
@@ -247,7 +248,7 @@ $('body').on('input', '#fileInput', function (event) {
                     // Distribuir imágenes en las columnas
                     images.forEach((image, index) => {
 
-                        columns[index].push(image.image); 
+                        columns[index].push(image.image);
                     });
 
                     // aladir imagenes a las columnas
@@ -313,7 +314,7 @@ function uploadImages(imagesArray, id, imageId = null) {
         willOpen: () => {
             Swal.showLoading();
         }
-    }).then(()=>{
+    }).then(() => {
         $('#modalImages').modal('show')
     });
 
@@ -396,7 +397,7 @@ function loadImagesContainer(id, base64 = null) {
             }
             Swal.close();
 
-            // Limitar el número de imágenes a 5
+            // Limitar el número de imágenes 
             images = images.slice(0, maxContainers);
 
             // Limpiar el contenedor antes de agregar nuevas imágenes
@@ -416,17 +417,15 @@ function loadImagesContainer(id, base64 = null) {
 
             // Agregar imágenes a las columnas
             columns.forEach((columnImages, colIndex) => {
-                // Crear el contenedor de columna para las imágenes
+
                 const colDiv = document.createElement('div');
                 colDiv.className = `col-6 col-md-4 image-column`;
-            
-                // Iterar a través de cada imagen en la columna
+
                 columnImages.forEach(image => {
                     // Crear el contenedor de la tarjeta de imagen
                     const imageDiv = document.createElement('div');
-                    imageDiv.className = 'card mb-3 position-relative'; // Agregar 'position-relative' para el posicionamiento del icono
-            
-                    // HTML del contenido de la imagen
+                    imageDiv.className = 'card mb-3 position-relative';
+
                     imageDiv.innerHTML = `
                         <img src="/image_file/${image.name}?t=${new Date().getTime()}" 
                             id="imgContainer" 
@@ -437,8 +436,8 @@ function loadImagesContainer(id, base64 = null) {
                             class="img-fluid imgContainer img-responsive-custom" 
                             style="cursor: pointer; object-fit: contain; width: 100%; height: 200px;">
                         
-                        <!-- Input de archivo oculto para cambiar imagen -->
-                        <input type="file" class="d-none" name="img" id="fileInputImg-${image.id}">
+                        <!-- Input file oculto  -->
+                        <input type="file" class="d-none" name="img" id="fileInputImg-${image.id}"   accept=".png, .jpg, .jpeg">
                         
                         <!-- Contenedor del radio para marcar como principal -->
                         <div class="caption d-flex ${!image.id ? 'd-none' : ''} containerToHidde">
@@ -465,7 +464,7 @@ function loadImagesContainer(id, base64 = null) {
                             </svg>
                         </div>
                     `;
-            
+
                     // Añadir la tarjeta de imagen al contenedor de la columna
                     colDiv.appendChild(imageDiv);
                 });

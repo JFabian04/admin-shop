@@ -171,18 +171,11 @@
                     <h4 class="modal-title" id="modalImagesLabel">Cargar Imágenes</h4>
                 </div>
                 <form id="formImages" class="modal-body">
-                    <!-- Botón para cargar archivos -->
-                    <div class="form-group btnd-none">
-                        <label class="btn btn-primary btn-file">
-                            <input type="file" class="hidden" name="images[]" id="fileInput" multiple
-                                accept="image/*">
-                            Seleccionar Imágenes
-                        </label>
-                    </div>
-
-                    <!-- Contenedores para mostrar imágenes -->
+                    
+ 
+                    
                     <div class="row" id="imageContainers">
-                        <!-- Las imágenes cargadas se mostrarán aquí -->
+                      
                     </div>
                 </form>
                 <div class="modal-footer">
