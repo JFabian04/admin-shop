@@ -18,7 +18,9 @@
         "datatables.net": "^2.1.8",
         "datatables.net-dt": "^2.1.8",
         "datatables.net-responsive": "^3.0.3",
+        "fast-glob": "^3.3.2",
         "jquery": "^3.7.1",
-        "sass": "^1.80.5"
+        "sass": "^1.80.5",
+        "sweetalert2": "^11.14.4"
     }
 }

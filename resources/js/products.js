@@ -1,5 +1,5 @@
-import Swal from 'sweetalert2';
 import { cleanMessageValidation, cleanModal, insertItems, insertMessgeValidate, toastController } from './app.js';
+import Swal from 'sweetalert2';
 
 const maxImages = 4;
 const imageContainers = document.getElementById('imageContainers');
