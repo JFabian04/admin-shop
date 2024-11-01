@@ -187,7 +187,7 @@ $('body').on('click', '#reset', function () {
     mainId = rowData.id;
 })
 
-// Deliminar 
+// Eliminar permanente el item 
 $('body').on('click', '#btnReset', function () {
     $.ajax({
         url: 'api/product/delete/' + mainId,
@@ -300,7 +300,7 @@ $('body').on('click', '#mainImgRadio', function () {
 
 })
 
-// Función globlar para petcion de guardar imagenes en el servidor
+// Función globlal para petcion de guardar imagenes en el servidor
 function uploadImages(imagesArray, id, imageId = null) {
     console.log('IMGENS QUE SE VANN A CARGAR: ', imagesArray);
     $('#modalImages').modal('hide')
