@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/auth', [AuthController::class, 'authenticate']);
 Route::post('/login', [AuthController::class, 'login']);
 
+// Función publica para cargar los proudctos en la vista del cliente
+Route::post('/product/getJson', [ProductController::class, 'gatAllObject']);
+
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
@@ -39,7 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('product')->group(function () {
         Route::get('/get', [ProductController::class, 'gatAllTable']);
-        Route::post('/getJson', [ProductController::class, 'gatAllObject']);
         Route::post('/register', [ProductController::class, 'store']);
         Route::get('/get/{id}', [ProductController::class, 'show']);
         Route::put('/update/{id}', [ProductController::class, 'update']);
