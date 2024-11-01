@@ -302,6 +302,7 @@ $('body').on('click', '#mainImgRadio', function () {
 // Función globlar para petcion de guardar imagenes en el servidor
 function uploadImages(imagesArray, id, imageId = null) {
     console.log('IMGENS QUE SE VANN A CARGAR: ', imagesArray);
+    $('#modalImages').modal('hide')
 
     Swal.fire({
         title: 'Cargando...',
@@ -312,6 +313,8 @@ function uploadImages(imagesArray, id, imageId = null) {
         willOpen: () => {
             Swal.showLoading();
         }
+    }).then(()=>{
+        $('#modalImages').modal('show')
     });
 
 
@@ -413,13 +416,17 @@ function loadImagesContainer(id, base64 = null) {
 
             // Agregar imágenes a las columnas
             columns.forEach((columnImages, colIndex) => {
+                // Crear el contenedor de columna para las imágenes
                 const colDiv = document.createElement('div');
                 colDiv.className = `col-6 col-md-4 image-column`;
-
+            
+                // Iterar a través de cada imagen en la columna
                 columnImages.forEach(image => {
+                    // Crear el contenedor de la tarjeta de imagen
                     const imageDiv = document.createElement('div');
                     imageDiv.className = 'card mb-3 position-relative'; // Agregar 'position-relative' para el posicionamiento del icono
-
+            
+                    // HTML del contenido de la imagen
                     imageDiv.innerHTML = `
                         <img src="/image_file/${image.name}?t=${new Date().getTime()}" 
                             id="imgContainer" 
@@ -428,19 +435,38 @@ function loadImagesContainer(id, base64 = null) {
                             data-main="${image.main}" 
                             alt="Imagen" 
                             class="img-fluid imgContainer img-responsive-custom" 
-                            style="cursor: pointer;">
+                            style="cursor: pointer; object-fit: contain; width: 100%; height: 200px;">
+                        
+                        <!-- Input de archivo oculto para cambiar imagen -->
                         <input type="file" class="d-none" name="img" id="fileInputImg-${image.id}">
-                        <div class="caption ${!image.id ? 'd-none' : ''} containerToHidde">
+                        
+                        <!-- Contenedor del radio para marcar como principal -->
+                        <div class="caption d-flex ${!image.id ? 'd-none' : ''} containerToHidde">
                             <label class="form-check-label" id="mainImgRadioUpdate" data-id="${image.id}" title="Marcar como foto principal" data-index="${colIndex}">
                                 <input type="radio" id="radioInput-${image.id}" name="mainImage" class="form-check-input"> 
                                 <p class="inputRadio">Principal</p>
                             </label>
                         </div>
-                        <div class="container-trash bg-danger p-1 rounded ${!image.id ? 'd-none' : ''} containerToHidde" id="deletePhoto" data-id="${image.id}" data-name="${image.original}" style="position: absolute; top: 10px; right: 10px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g class="trash-outline"><g fill="white" fill-rule="evenodd" class="Vector" clip-rule="evenodd"><path d="M4.917 6.003a1 1 0 0 1 1.08.914l.849 10.248A2 2 0 0 0 8.839 19h6.322a2 2 0 0 0 1.993-1.835l.85-10.248a1 1 0 0 1 1.993.166l-.85 10.247A4 4 0 0 1 15.162 21H8.84a4 4 0 0 1-3.987-3.67l-.85-10.247a1 1 0 0 1 .914-1.08"/><path d="M3 7a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1m7 2a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1"/><path d="M10.441 5a1 1 0 0 0-.948.684l-.544 1.632a1 1 0 1 1-1.898-.632l.544-1.633A3 3 0 0 1 10.441 3h3.117a3 3 0 0 1 2.846 2.051l.545 1.633a1 1 0 0 1-1.898.632l-.544-1.632A1 1 0 0 0 13.56 5h-3.117Z"/></g></g></svg>
+                        
+                        <!-- Icono para eliminar imagen -->
+                        <div class="container-trash bg-danger p-1 rounded ${!image.id ? 'd-none' : ''} containerToHidde" 
+                             id="deletePhoto" 
+                             data-id="${image.id}" 
+                             data-name="${image.original}" 
+                             style="position: absolute; top: 10px; right: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g class="trash-outline">
+                                    <g fill="white" fill-rule="evenodd" class="Vector" clip-rule="evenodd">
+                                        <path d="M4.917 6.003a1 1 0 0 1 1.08.914l.849 10.248A2 2 0 0 0 8.839 19h6.322a2 2 0 0 0 1.993-1.835l.85-10.248a1 1 0 0 1 1.993.166l-.85 10.247A4 4 0 0 1 15.162 21H8.84a4 4 0 0 1-3.987-3.67l-.85-10.247a1 1 0 0 1 .914-1.08"/>
+                                        <path d="M3 7a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1m7 2a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1"/>
+                                        <path d="M10.441 5a1 1 0 0 0-.948.684l-.544 1.632a1 1 0 1 1-1.898-.632l.544-1.633A3 3 0 0 1 10.441 3h3.117a3 3 0 0 1 2.846 2.051l.545 1.633a1 1 0 0 1-1.898.632l-.544-1.632A1 1 0 0 0 13.56 5h-3.117Z"/>
+                                    </g>
+                                </g>
+                            </svg>
                         </div>
                     `;
-
+            
+                    // Añadir la tarjeta de imagen al contenedor de la columna
                     colDiv.appendChild(imageDiv);
                 });
 
